@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sales Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <h1>Pat's Salmon Cookies Sales Data </h1> 
+    <div id="new-store"><label>Add a new store </label>
+      <form id="add-store">
+          <p> Location name: </p>
+          <input type="text" id="location">
+          <p>Minimum Customers Per Hour: </p>
+          <input type="text" id="min">
+          <p>Maximum Customers Per Hour:</p>
+          <input type="text" id="max">
+          <p>Average Cookies Per Sale:</p>
+          <input type="text" id="avg">
+          <button id="submit" type="submit" onclick="return add(event);"> Click here to add </button>
+      </form><br>
+    </div>
+        
+    <table id = 'table'>
+        <tr>
+          <th>Locations</th>
+          <th>6am</th> 
+          <th>7am</th> 
+          <th>8am</th> 
+          <th>9am</th> 
+          <th>10am</th> 
+          <th>11am</th> 
+          <th>12pm</th> 
+          <th>1pm</th> 
+          <th>2pm</th> 
+          <th>3pm</th> 
+          <th>4pm</th> 
+          <th>5pm</th> 
+          <th>6pm</th> 
+          <th>7pm</th> 
+          <th>Location Totals</th> 
+        </tr>
+      </table>
+
+      <script type="text/javascript" src="sales.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+body {
+    font-style: Arial;
+}
+#table {
+    font-style: Georgia;
+    background: lightpink;
+    box-sizing: border-box; 
+    border: 10px solid red;
+    padding: 20px;
+    margin: 30px;
+    padding: 10px;
+    height: 150px;
+    width: 600 px;
+}
+
+.relative {
+    position: relative;
+    
+}
+
+.absolute {
+    position: absolute;
+    right: 0px;
+    top: 5px;
+    border: 1px solid green;
+
+}
+
+.fixed {
+    position: fixed;
+    top: 40%;
+    right: 0px;
+}
+
+.sticky {
+    position: sticky;
+    top: 0px;
+}
+
+.box.flex {
+    display: flex;
+}
