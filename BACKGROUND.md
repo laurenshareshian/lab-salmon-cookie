@@ -1,9 +1,9 @@
 # About the Problem Domain...
 
-Your friend Pat has come up with a business idea by combining two signature Portland icons: 
+Your friend Pat from Seattle has come up with a business idea by combining two signature Emerald City icons: 
 Pat has developed a recipe for a coffee-time confection called Salmon Cookies.
 
-They're cookies made into the shape of a salmon, and actually made with salmon (though the fish is ground up so fine that you can't even taste it!) that is the ideal match for a steaming cup of coffee on a gray Seattle morning. Or gray Seattle afternoon... whatever. Tourists will go gaga for them, locals will begrudgingly fall in love with them, and Pat will make a ton of money.
+They're cookies made into the shape of a salmon, and actually made with salmon (though the fish is ground up so fine that you can't even taste it!) that is the ideal match for a steaming cup of coffee on a gray Seattle morning. Or gray Seattle afternoon... whatever. Tourists will go gaga for them, locals will begrudgingly fall in love with them, and Pat will make a ton of money. And you get to work remotely on the project from Portland!
 
 But, Pat needs some help with the branding of the business, as well as some help with internal data management for the company, and has enlisted your assistance because of your extensive and proven work in developing web applications.
 
