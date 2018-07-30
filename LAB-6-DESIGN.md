@@ -1,3 +1,6 @@
+Pat has asked you to come up with all other aspects of the design for both documents, including a color scheme and a custom font, and maybe additional images, for a public-facing webpage.
+
+So, in addition to building an application that calculates daily sales projections for each location (in a file called sales.html), you also need to create a pubic-facing page (in a file called index.html) that is colorful, eye-catching, readable, useful, informative... and ultimately of a quality ready for use on T-shirts, stickers, coffee mugs, cookie bags, napkins, and so on.
 
 ### Public-Facing Page (index.html)
 
