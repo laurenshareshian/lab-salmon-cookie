@@ -22,14 +22,12 @@ Get started on your _static design_ of the sales page. It is much easier to code
 
 See the example image, though yours should match your homepage design.
 
-Here are the starting numbers and stores you can use for the static design:
-
-Location        | Min / Cust | Max / Cust | Avg Cookie / Sale
-----------------|------------|------------|-------------------
-1st and Pike      |      23    |     65     |        6.3
-SeaTac Airport  |      3     |     24     |        1.2
-Seattle Center     |      11    |     38     |        3.7
-Capitol Hill |      20    |     38     |        2.3
-Alki            |      2     |     16     |        4.6
+Here are some store locations you can use in your static design:
+      
+* 1st and Pike
+* SeaTac Airport
+* Seattle Center
+* Capitol Hill
+* Alki
 
 
