@@ -9,42 +9,65 @@
 </head>
 
 <body>
-    <h1>Pat's Salmon Cookies Sales Data </h1> 
-    <div id="new-store"><label>Add a new store </label>
-      <form id="add-store">
-          <p> Location name: </p>
-          <input type="text" id="location">
-          <p>Minimum Customers Per Hour: </p>
-          <input type="text" id="min">
-          <p>Maximum Customers Per Hour:</p>
-          <input type="text" id="max">
-          <p>Average Cookies Per Sale:</p>
-          <input type="text" id="avg">
-          <button id="submit" type="submit" onclick="return add(event);"> Click here to add </button>
-      </form><br>
-    </div>
-        
-    <table id = 'table'>
-        <tr>
-          <th>Locations</th>
-          <th>6am</th> 
-          <th>7am</th> 
-          <th>8am</th> 
-          <th>9am</th> 
-          <th>10am</th> 
-          <th>11am</th> 
-          <th>12pm</th> 
-          <th>1pm</th> 
-          <th>2pm</th> 
-          <th>3pm</th> 
-          <th>4pm</th> 
-          <th>5pm</th> 
-          <th>6pm</th> 
-          <th>7pm</th> 
-          <th>Location Totals</th> 
-        </tr>
-      </table>
+    <div class="wrapper">
+        <header>
+            <h1> Salmon Cookies</h1>
+            <nav>
+                <ul>
+                    <li><a href="" class="current">home</a></li> 
+                    <li><a href="">menu</a></li>
+                    <li><a href="">about</a></li>
+                    <li><a href="">sales</a></li>
+                    <li><a href="">contact</a></li>
+                    <li><a href="">data</a></li>
+                </ul> 
+            </nav>
+        </header>
+        <div class = "company-name">
+                Pat's Salmon Cookies Sales Data
+        </div>
 
-      <script type="text/javascript" src="sales.js"></script>
+        <div id="new-store"><h2>Add a new store! </h2>
+          <form id="add-store">
+              <p> Location name: </p>
+              <input type="text" id="location">
+              <p>Minimum Customers Per Hour: </p>
+              <input type="text" id="min">
+              <p>Maximum Customers Per Hour:</p>
+              <input type="text" id="max">
+              <p>Average Cookies Per Sale:</p>
+              <input type="text" id="avg">
+              <button id="submit" type="submit" onclick="return add(event);"> Click here to add </button>
+          </form><br>
+        </div>
+            
+        <table id = 'table'>
+            <tr>
+              <th>Locations</th>
+              <th>6am</th> 
+              <th>7am</th> 
+              <th>8am</th> 
+              <th>9am</th> 
+              <th>10am</th> 
+              <th>11am</th> 
+              <th>12pm</th> 
+              <th>1pm</th> 
+              <th>2pm</th> 
+              <th>3pm</th> 
+              <th>4pm</th> 
+              <th>5pm</th> 
+              <th>6pm</th> 
+              <th>7pm</th> 
+              <th>Location Totals</th> 
+            </tr>
+          </table>
+    
+          <script type="text/javascript" src="sales.js"></script>
+
+        </div>
+        <footer>
+            &copy; 2018 Salmon Cookies
+        </footer>
+    </div><!-- .wrapper -->
 </body>
 </html>
