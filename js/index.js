@@ -6,20 +6,31 @@
     var html = module.html;
 
     // reference the ul
-    var ul = document.getElementById('stores');
+    var ul = document.getElementById('table');
 
     // create a function we can call with data,
     // that returns DOM we can append into the 
     // document
     var render = function(store) {
-        return toDOM(html`        
-            <li>
-                <h2>${store.max_cust}</h2>
-                <span class="color-name" 
-                    style="background: ${store.min_cust}">
-                    ${store.avg_cookies}
-                </span>
-            </li>
+        return toDOM(html`   
+            <tr>
+                <td>${store.location}</td>
+                <td>${store.hours[0]}</td>
+                <td>${store.hours[1]}</td>
+                <td>${store.hours[2]}</td>
+                <td>${store.hours[3]}</td>
+                <td>${store.hours[4]}</td>
+                <td>${store.hours[5]}</td>
+                <td>${store.hours[6]}</td>
+                <td>${store.hours[7]}</td>
+                <td>${store.hours[8]}</td>
+                <td>${store.hours[9]}</td>
+                <td>${store.hours[10]}</td>
+                <td>${store.hours[11]}</td>
+                <td>${store.hours[12]}</td>
+                <td>${store.hours[13]}</td>
+                <td>${store.location}</td>
+            </tr>
         `);
     };
 
