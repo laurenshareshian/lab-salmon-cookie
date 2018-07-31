@@ -1,4 +1,5 @@
 /* exported add */
+'use strict';
 
 var sales_info = {
     'Pike Place': { min_cust: 10, max_cust: 40, avg_cookies: 10 },
