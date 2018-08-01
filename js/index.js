@@ -1,4 +1,6 @@
-/* exported add */
+/* exported add_store */
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "add_store" }]*/
+
 'use strict';
 
 (function(module){
@@ -77,7 +79,7 @@ function populate_table(stores){
     table.appendChild(dom);
 }
 
-function add(event, module){
+function add_store(event, module){
     event.preventDefault();
     var stores = module.stores;
     //clear table info
