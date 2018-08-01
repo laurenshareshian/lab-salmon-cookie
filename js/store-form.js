@@ -31,7 +31,7 @@ function add_store(module, event){
         for(var i = 0; i < 14; i++){
             people = getRandInteger(stores[locations[j]].min_cust, stores[locations[j]].max_cust);
             cookies = people * stores[locations[j]].avg_cookies;
-            stores[locations[j]]['hours'].push(cookies);
+            stores[locations[j]]['hours'].push(Math.round(cookies));
         }
     }
     populate_table(stores);

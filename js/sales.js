@@ -1,4 +1,5 @@
 /* exported add */
+/* eslint-disable no-undef */
 // this is the way i originally did it (not marty's way)
 'use strict';
 
@@ -72,11 +73,6 @@ function create_table(){
 
     element.appendChild(tabledata);
 
-}
-
-function getRandInteger(min, max) {
-
-    return Math.floor(Math.random() * (max - min)) + min;
 }
 
 // function add(event){
