@@ -3,90 +3,115 @@
 
 (function(module){
     var stores = module.stores;
+    populate_table(stores);
+})(window.module = window.module || {});
 
-    // reference the ul
-    var ul = document.getElementById('tbody');
+function populate_table(stores){
+    // reference the table
+    var table = document.getElementById('tbody');
 
     // reference the template
     var template = document.getElementById('store-template').content;
-
-    var locations = Object.keys(stores);
-    var store;
 
     // initialize hourly totals dict
     var hourly_totals_dict = {};
     for(var j = 0; j < 14; j++){
         hourly_totals_dict[j] = 0;
     }
-    // loop each store
+    // loop through each store and create a row for it
+    var locations = Object.keys(stores);
+    var store;
     for(j = 0; j < locations.length; j++){
         store = locations[j];
         var dom = template.cloneNode(true);
+        //add store location (column 0)
         var td = dom.querySelector('td');
         td.textContent = store;
-        ul.appendChild(td);
+        table.appendChild(td);
         var cookies;
-        var hourly_totals = 0;
-        // loop each hour
+        var store_total = 0;
+        // add store hours (columns 1 through 13)
         for(var i = 0; i < stores[store]['hours'].length; i++)
         {
             dom = template.cloneNode(true);
             td = dom.querySelector('td');
             cookies = stores[store]['hours'][i];
             td.textContent = cookies;
-            ul.appendChild(td);
-            hourly_totals += cookies;
+            table.appendChild(td);
+            store_total += cookies;
             hourly_totals_dict[i] += cookies;
         }
-        // find store total
+        // calculate store total and make it column 14
         dom = template.cloneNode(true);
         td = dom.querySelector('td');
-        ul.appendChild(td);
-        td.textContent = hourly_totals;
-        ul.appendChild(dom);
-        console.log(hourly_totals_dict);
+        table.appendChild(td);
+        td.textContent = store_total;
+        table.appendChild(dom);
     }
 
-    // fill in last row
-
-    ul = document.getElementById('tfoot');
-
+    // fill in last row with hourly totals
+    table = document.getElementById('tfoot');
     // reference the template
     template = document.getElementById('store-template').content;
-
-    // loop each store
-
+    // create an entry for the title of the row (column 0)
+    var all_store_total = 0;
     dom = template.cloneNode(true);
     td = dom.querySelector('td');
     td.textContent = 'Hourly Totals for All Locations';
-    ul.appendChild(td);
+    table.appendChild(td);
+    // fill in hourly totals for columns 1-13
     for(i = 0; i < stores[store]['hours'].length; i++)
     {
         dom = template.cloneNode(true);
         td = dom.querySelector('td');
-        td.textContent = hourly_totals_dict[i];
-        ul.appendChild(td);
+        cookies = hourly_totals_dict[i];
+        td.textContent = cookies;
+        all_store_total += cookies;
+        table.appendChild(td);
     }
-    // find store total
+    // sum all of the hourly totals
     dom = template.cloneNode(true);
     td = dom.querySelector('td');
-    ul.appendChild(td);
-    td.textContent = hourly_totals;
-    ul.appendChild(dom);
-    console.log(hourly_totals_dict);
-})(window.module = window.module || {});
+    table.appendChild(td);
+    td.textContent = all_store_total;
+    table.appendChild(dom);
+}
 
 function add(event, module){
     event.preventDefault();
     var stores = module.stores;
-    document.getElementById('table').innerHTML = '';
+    //clear table info
+    var tbody = document.getElementById('tbody');
+    tbody.innerText = '';
+    var thead = document.getElementById('tfoot');
+    thead.innerText = '';
+    //get user input
     var location = document.getElementById('location').value;
     var max_cust = document.getElementById('max').value;
     var min_cust = document.getElementById('min').value;
     var avg_cookies = document.getElementById('avg').value;
+    //add this user input to our stores dictionary
     stores[location] = {};
-    stores[location]['max_cust'] = parseInt(max_cust);
-    stores[location]['min_cust'] = parseInt(min_cust);
-    stores[location]['avg_cookies'] = parseInt(avg_cookies);
+    stores[location]['location'] = location;
+    stores[location]['max_cust'] = max_cust;
+    stores[location]['min_cust'] = min_cust;
+    stores[location]['avg_cookies'] = avg_cookies;
+    // loop through each store
+    var locations = Object.keys(stores);
+    for(var j = 0; j < locations.length; j++){
+        var people = 0;
+        var cookies = 0;
+        stores[locations[j]]['hours'] = [];
+        // create hourly data for that location
+        for(var i = 0; i < 14; i++){
+            people = getRandInteger(stores[locations[j]].min_cust, stores[locations[j]].max_cust);
+            cookies = people * stores[locations[j]].avg_cookies;
+            stores[locations[j]]['hours'].push(cookies);
+        }
+    }
+    populate_table(stores);
     console.log(stores);
+}
+function getRandInteger(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
 }

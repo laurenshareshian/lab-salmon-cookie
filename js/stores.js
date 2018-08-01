@@ -22,7 +22,8 @@
     }
     module.stores = stores;
 
-    function getRandInteger(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
-    }
 }(window.module = window.module || {}));
+
+function getRandInteger(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
