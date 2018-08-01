@@ -1,4 +1,5 @@
 /* exported add */
+// this is the way i originally did it (not marty's way)
 'use strict';
 
 var stores = {
@@ -78,21 +79,21 @@ function getRandInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function add(event){
-    event.preventDefault();
-    document.getElementById('table').innerHTML = '';
-    var location = document.getElementById('location').value;
-    var max_cust = document.getElementById('max').value;
-    var min_cust = document.getElementById('min').value;
-    var avg_cookies = document.getElementById('avg').value;
+// function add(event){
+//     event.preventDefault();
+//     document.getElementById('table').innerHTML = '';
+//     var location = document.getElementById('location').value;
+//     var max_cust = document.getElementById('max').value;
+//     var min_cust = document.getElementById('min').value;
+//     var avg_cookies = document.getElementById('avg').value;
 
-    stores[location] = {};
-    stores[location]['max_cust'] = parseInt(max_cust);
-    stores[location]['min_cust'] = parseInt(min_cust);
-    stores[location]['avg_cookies'] = parseInt(avg_cookies);
+//     stores[location] = {};
+//     stores[location]['max_cust'] = parseInt(max_cust);
+//     stores[location]['min_cust'] = parseInt(min_cust);
+//     stores[location]['avg_cookies'] = parseInt(avg_cookies);
 
-    for(var j = 0; j < 14; j++){
-        hourly_totals[j] = 0;
-    }
-    create_table();
-}
+//     for(var j = 0; j < 14; j++){
+//         hourly_totals[j] = 0;
+//     }
+//     create_table();
+// }

@@ -1,52 +1,5 @@
+/* exported add */
 'use strict';
-
-// (function(module){
-//     var stores = module.stores;
-//     var toDOM = module.toDOM;
-//     var html = module.html;
-
-//     // reference the ul
-//     var ul = document.getElementById('table');
-
-//     // create a function we can call with data,
-//     // that returns DOM we can append into the 
-//     // document
-//     var render = function(store) {
-//         return toDOM(html`   
-//             <tr>
-//                 <td>${store.location}</td>
-//                 <td>${store.hours[0]}</td>
-//                 <td>${store.hours[1]}</td>
-//                 <td>${store.hours[2]}</td>
-//                 <td>${store.hours[3]}</td>
-//                 <td>${store.hours[4]}</td>
-//                 <td>${store.hours[5]}</td>
-//                 <td>${store.hours[6]}</td>
-//                 <td>${store.hours[7]}</td>
-//                 <td>${store.hours[8]}</td>
-//                 <td>${store.hours[9]}</td>
-//                 <td>${store.hours[10]}</td>
-//                 <td>${store.hours[11]}</td>
-//                 <td>${store.hours[12]}</td>
-//                 <td>${store.hours[13]}</td>
-//                 <td>${store.location}</td>
-//             </tr>
-//         `);
-//     };
-
-//     // loop each store
-//     var store;
-//     var locations = Object.keys(stores);
-//     for(var j = 0; j < locations.length; j++){
-//         store = stores[locations[j]];
-//         // make a store template instance
-//         var dom = render(store);
-
-//         // append it to the ul
-//         ul.appendChild(dom);
-//     }
-
-// })(window.module = window.module || {});
 
 (function(module){
     var stores = module.stores;
@@ -57,29 +10,83 @@
     // reference the template
     var template = document.getElementById('store-template').content;
 
-    // loop each fruit
     var locations = Object.keys(stores);
     var store;
-    for(var j = 0; j < locations.length; j++){
+
+    // initialize hourly totals dict
+    var hourly_totals_dict = {};
+    for(var j = 0; j < 14; j++){
+        hourly_totals_dict[j] = 0;
+    }
+    // loop each store
+    for(j = 0; j < locations.length; j++){
         store = locations[j];
         var dom = template.cloneNode(true);
-;
         var td = dom.querySelector('td');
         td.textContent = store;
         ul.appendChild(td);
+        var cookies;
+        var hourly_totals = 0;
+        // loop each hour
         for(var i = 0; i < stores[store]['hours'].length; i++)
         {
             dom = template.cloneNode(true);
             td = dom.querySelector('td');
-            td.textContent = stores[store]['hours'][i];
+            cookies = stores[store]['hours'][i];
+            td.textContent = cookies;
             ul.appendChild(td);
+            hourly_totals += cookies;
+            hourly_totals_dict[i] += cookies;
         }
-        var dom = template.cloneNode(true);
-        var td = dom.querySelector('td');
+        // find store total
+        dom = template.cloneNode(true);
+        td = dom.querySelector('td');
         ul.appendChild(td);
-        td.textContent = store;
+        td.textContent = hourly_totals;
         ul.appendChild(dom);
-        var tr = dom.querySelector('tr');
+        console.log(hourly_totals_dict);
     }
 
+    // fill in last row
+
+    ul = document.getElementById('tfoot');
+
+    // reference the template
+    template = document.getElementById('store-template').content;
+
+    // loop each store
+
+    dom = template.cloneNode(true);
+    td = dom.querySelector('td');
+    td.textContent = 'Hourly Totals for All Locations';
+    ul.appendChild(td);
+    for(i = 0; i < stores[store]['hours'].length; i++)
+    {
+        dom = template.cloneNode(true);
+        td = dom.querySelector('td');
+        td.textContent = hourly_totals_dict[i];
+        ul.appendChild(td);
+    }
+    // find store total
+    dom = template.cloneNode(true);
+    td = dom.querySelector('td');
+    ul.appendChild(td);
+    td.textContent = hourly_totals;
+    ul.appendChild(dom);
+    console.log(hourly_totals_dict);
 })(window.module = window.module || {});
+
+function add(event, module){
+    event.preventDefault();
+    var stores = module.stores;
+    document.getElementById('table').innerHTML = '';
+    var location = document.getElementById('location').value;
+    var max_cust = document.getElementById('max').value;
+    var min_cust = document.getElementById('min').value;
+    var avg_cookies = document.getElementById('avg').value;
+    stores[location] = {};
+    stores[location]['max_cust'] = parseInt(max_cust);
+    stores[location]['min_cust'] = parseInt(min_cust);
+    stores[location]['avg_cookies'] = parseInt(avg_cookies);
+    console.log(stores);
+}

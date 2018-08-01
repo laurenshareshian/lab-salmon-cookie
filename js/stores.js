@@ -7,6 +7,7 @@
         'Capitol Hill': { location: 'Capitol Hill', min_cust: 40, max_cust: 80, avg_cookies: 2 },
         'Alki': { location: 'Alki', min_cust: 5, max_cust: 25, avg_cookies: 3 }
     };
+    // loop through each store
     var locations = Object.keys(stores);
     for(var j = 0; j < locations.length; j++){
         var people = 0;
@@ -25,4 +26,3 @@
         return Math.floor(Math.random() * (max - min)) + min;
     }
 }(window.module = window.module || {}));
-
