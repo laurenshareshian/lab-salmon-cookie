@@ -3,10 +3,13 @@
 
 'use strict';
 
-(function(module){
+(function(event, module){
     var stores = module.stores;
+    console.log(stores);
     populate_table(stores);
-})(window.module = window.module || {});
+    let button = document.getElementById('add-store');
+    button.addEventListener('submit', function(event){ add_store(module, event); });
+})(event, window.module = window.module || {});
 
 function populate_table(stores){
     // reference the table
@@ -79,7 +82,7 @@ function populate_table(stores){
     table.appendChild(dom);
 }
 
-function add_store(event, module){
+function add_store(module, event){
     event.preventDefault();
     var stores = module.stores;
     //clear table info
@@ -92,6 +95,7 @@ function add_store(event, module){
     var max_cust = document.getElementById('max').value;
     var min_cust = document.getElementById('min').value;
     var avg_cookies = document.getElementById('avg').value;
+    console.log('hello', document.getElementById('location').value);
     //add this user input to our stores dictionary
     stores[location] = {};
     stores[location]['location'] = location;
@@ -112,7 +116,6 @@ function add_store(event, module){
         }
     }
     populate_table(stores);
-    console.log(stores);
 }
 function getRandInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
