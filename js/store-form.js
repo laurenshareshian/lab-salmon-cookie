@@ -2,37 +2,56 @@
 /* eslint-disable no-undef */
 'use strict';
 
-function add_store(module, event){
-    event.preventDefault();
-    var stores = module.stores;
-    //clear table info
-    var tbody = document.getElementById('tbody');
-    tbody.innerText = '';
-    var thead = document.getElementById('tfoot');
-    thead.innerText = '';
-    //get user input
-    var location = document.getElementById('location').value;
-    var max_cust = document.getElementById('max').value;
-    var min_cust = document.getElementById('min').value;
-    var avg_cookies = document.getElementById('avg').value;
-    //add this user input to our stores dictionary
-    stores[location] = {};
-    stores[location]['location'] = location;
-    stores[location]['max_cust'] = max_cust;
-    stores[location]['min_cust'] = min_cust;
-    stores[location]['avg_cookies'] = avg_cookies;
-    // loop through each store
-    var locations = Object.keys(stores);
-    for(var j = 0; j < locations.length; j++){
-        var people = 0;
-        var cookies = 0;
-        stores[locations[j]]['hours'] = [];
-        // create hourly data for that location
-        for(var i = 0; i < 14; i++){
-            people = getRandInteger(stores[locations[j]].min_cust, stores[locations[j]].max_cust);
-            cookies = people * stores[locations[j]].avg_cookies;
-            stores[locations[j]]['hours'].push(Math.round(cookies));
-        }
+(function(module){
+    let form = document.getElementById('add-store');
+    let error = document.getElementById('form-error');
+
+    function initStoreForm(onStoreAdded) {
+
+        form.addEventListener('submit', function(event) {
+            // #1 Prevent default posting of the form
+            event.preventDefault();
+
+            // #2 Gather up data
+            let elements = form.elements;
+
+            //add this user's new store
+            let store = {
+                location: elements.location.value,
+                max_cust: elements.max.value,
+                min_cust: elements.min.value,
+                avg_cookies: elements.avg.value,
+                key: elements.location.value
+            };
+            console.log('store in store-form:', store);
+
+            // give the store hourly cookie values
+            let people = 0;
+            let cookies = 0;
+            store['hours'] = [];
+            for(let i = 0; i < 14; i++){
+                people = getRandInteger(store.min_cust, store.max_cust);
+                cookies = people * store.avg_cookies;
+                store['hours'].push(Math.round(cookies));
+            }
+            console.log('store + hours in store-form:', store);
+
+            // #3 Call action
+            try {
+                error.textContent = '';
+                onStoreAdded(store);
+                // #4 Process success or failure
+                form.reset();
+                document.activeElement.blur();
+            }
+            catch (err) {
+                // #4 Process success or failure
+                error.textContent = err.message;
+            }
+        });
     }
-    populate_table(stores);
-}
+
+    module.initStoreForm = initStoreForm;
+
+})(window.module = window.module || {});
+
