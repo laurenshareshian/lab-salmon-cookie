@@ -2,46 +2,42 @@
 
 (function(module){
     let stores = module.stores;
+
     // make a shallow copy of stores
     let lastStores = stores.slice();
 
-    // populate the table body with the store's hourly info
-    let renderStore = function(store){
-        // reference the table
-        let table = document.getElementById('tbody');
+    // helper stuff for template
+    let toDOM = module.toDOM;
+    let html = module.html;
 
-        // reference the template
-        let template = document.getElementById('store-template').content;
+    // reference the ul
+    let ul = document.getElementById('tbody');
 
-        // loop through each store and create a row for it;
-        let dom = template.cloneNode(true);
-
-        //add store location (column 0)
-        let td = dom.querySelector('td');
-        td.textContent = store.location;
-        table.appendChild(td);
+    // create a function we can call with data, that returns DOM we can append into the document
+    let render = function(store) {
+        let rowString = '<tr> <td>' + store.location + '</td>';
 
         // create a counter variable for the total cookies for that store
         let store_total = 0;
-
-        // populate hourly cookie data in table (columns 1 through 13)
-        for(let i = 0; i < store['hours'].length; i++)
-        {
-            dom = template.cloneNode(true);
-            td = dom.querySelector('td');
-            let cookies = store['hours'][i];
-            td.textContent = cookies;
-            table.appendChild(td);
-            // keep a running tally of all the store's cookies
+        let cookies = 0;
+        for(let i = 0; i < 14; i++){
+            cookies = store.hours[i];
+            rowString += '<td>' + cookies + '</td>';
             store_total += cookies;
         }
-        // put the store total in column 14
-        dom = template.cloneNode(true);
-        td = dom.querySelector('td');
-        table.appendChild(td);
-        td.textContent = store_total;
-        table.appendChild(dom);
+        rowString += '<td>' + store_total + '</td> </tr>';
+
+        return toDOM(html`${rowString}`);
     };
+
+    // shared functionality between initial load and
+    // subsequent update calls
+    function renderStore(store) {
+        // make a fruit template instance
+        let dom = render(store);
+        // append it to the ul
+        ul.appendChild(dom);
+    }
 
     // populate the table with all the stores' info when the page opens
     for(let j = 0; j < stores.length; j++){

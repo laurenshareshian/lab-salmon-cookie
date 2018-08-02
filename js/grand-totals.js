@@ -3,7 +3,7 @@
 (function(module){
     let stores = module.stores;
 
-    let renderTableFooter = function(){
+    let hourlyTally = function(stores){
 
         // Create an empty object called columnTotals that will store each column's total
         let columnTotals = {};
@@ -21,11 +21,16 @@
                 columnTotals[i] += cookies;
             }
         }
+        return columnTotals;
+    };
+
+    let renderTableFooter = function(columnTotals){
 
         // populate the last row with hourly totals
         let table = document.getElementById('tfoot');
 
         // reference the template
+
         let template = document.getElementById('store-template').content;
 
         // create an entry for the title of the row (column 0)
@@ -57,7 +62,8 @@
     };
 
     // create the footer row when the page is loaded
-    renderTableFooter();
+    let columnTotals = hourlyTally(stores);
+    renderTableFooter(columnTotals);
 
     // remove the old footer and replace it with a new footer when a new store is added
     function updateFooter() {
@@ -68,7 +74,8 @@
             node.removeChild(node.lastChild);
         }
         // add a new footer
-        renderTableFooter(stores);
+        let columnTotals = hourlyTally(stores);
+        renderTableFooter(columnTotals);
     }
 
     module.updateFooter = updateFooter;
