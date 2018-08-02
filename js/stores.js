@@ -22,7 +22,7 @@
 
     function addStore(store) {
         stores.push(store);
-        console.log('stores in stores.js', stores);
+        console.log('added store', store);
     }
 
     module.stores = stores;

@@ -23,7 +23,6 @@
                 avg_cookies: elements.avg.value,
                 key: elements.location.value
             };
-            console.log('store in store-form:', store);
 
             // give the store hourly cookie values
             let people = 0;
@@ -34,7 +33,6 @@
                 cookies = people * store.avg_cookies;
                 store['hours'].push(Math.round(cookies));
             }
-            console.log('store + hours in store-form:', store);
 
             // #3 Call action
             try {

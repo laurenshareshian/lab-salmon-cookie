@@ -9,11 +9,13 @@
 
     // this function allows us to signal to child components they need to update cuz data changed
     let updateStoreList = module.updateStoreList;
+    let updateFooter = module.updateFooter;
 
     //initialize the form so we can orchestrate needed actions and changes
     initStoreForm(function onStoreAdded(store) {
         addStore(store);
         updateStoreList();
+        updateFooter();
     });
 
 })(window.module = window.module || {});
