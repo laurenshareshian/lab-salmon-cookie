@@ -7,7 +7,7 @@
     // this function initializes the form so we can give a callback function for when a submit happens
     let initStoreForm = module.initStoreForm;
 
-    // this function allows us to signal to child components they need to update cuz data changed
+    // this function allows us to signal to child components that they need to update because data changed
     let updateStoreList = module.updateStoreList;
     let updateFooter = module.updateFooter;
 

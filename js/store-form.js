@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
+/* global createHourlyInfo */
+
 'use strict';
 
 (function(module){
@@ -25,14 +25,7 @@
             };
 
             // give the store hourly cookie values
-            let people = 0;
-            let cookies = 0;
-            store['hours'] = [];
-            for(let i = 0; i < 14; i++){
-                people = getRandInteger(store.min_cust, store.max_cust);
-                cookies = people * store.avg_cookies;
-                store['hours'].push(Math.round(cookies));
-            }
+            store = createHourlyInfo(store);
 
             // #3 Call action
             try {
@@ -48,8 +41,7 @@
             }
         });
     }
-
+    // make this function accessible to other functions
     module.initStoreForm = initStoreForm;
 
 })(window.module = window.module || {});
-
